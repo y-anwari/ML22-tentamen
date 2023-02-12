@@ -22,12 +22,25 @@ Als je in de forward methode van het Linear model kijkt (in `tentamen/model.py`)
 - Hoe had hij dit ook kunnen oplossen?
 - Wat zijn voor een nadelen van de verschillende manieren om deze stap te doen?
 
+Antwoord:
+
+
 ### 1c
 Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitleggen wat een betere architectuur zou zijn.
 
 - Beschrijf de architecturen die je kunt overwegen voor een probleem als dit. Het is voldoende als je beschrijft welke layers in welke combinaties je zou kunnen gebruiken.
 - Geef vervolgens een indicatie en motivatie voor het aantal units/filters/kernelsize etc voor elke laag die je gebruikt, en hoe je omgaat met overgangen (bv van 3 naar 2 dimensies). Een indicatie is bijvoorbeeld een educated guess voor een aantal units, plus een boven en ondergrens voor het aantal units. Met een motivatie laat je zien dat jouw keuze niet een random selectie is, maar dat je 1) andere problemen hebt gezien en dit probleem daartegen kunt afzetten en 2) een besef hebt van de consquenties van het kiezen van een range.
 - Geef aan wat jij verwacht dat de meest veelbelovende architectuur is, en waarom (opnieuw, laat zien dat je niet random getallen noemt, of keuzes maakt, maar dat jij je keuze baseert op ervaring die je hebt opgedaan met andere problemen).
+
+Antwoord:
+
+- Arch 1: Input -> Linear -> ReLU -> Linear -> Dropout -> ReLU -> Linear -> Output - huidige architectuur, 
+  Arch 2: Input -> Linear -> ReLU -> Linear -> ReLU -> Linear -> Dropout -> ReLU -> Linear -> Output - een diepere opgezet architectuur,
+  Arch 3: Input -> Linear -> LeakyReLU -> Linear -> Dropout -> LeakyReLU -> Linear -> Output - een dipere opgezet architectuur met LeakyReLU
+  
+  Hoe dieper een architectuur opgezet wordt, hoe langer het duurt voordat het klaar is met trainen, des te beter het voorspellingen kan doen. 
+- Units/filters = 64 -> 128 -> 256 units = Hierbij neemt het aantal parameters toe naarmate deze aantallen toenemen. We werken met een kleine dataset. 
+- Arch 2 heeft mijn voorkeur. Dat komt omdat deze getraind is op meer features dan arch 1 en arch 3. Hierdoor zijn er meer paramaters beschikbaar, waardoor het model betere predicties kan uitvoeren. Bij dit architectuur is er rekening gehouden met de hoeveelheid data. Naarmate de dataset toeneemt, wordt er een uitgebreidere architectuur verwacht. Dat is natuurlijk ook afhankelijk hoeveel tijd je hebt om te experimenteren en hoe snel je computer jouw model traint. 
 
 ### 1d
 Implementeer jouw veelbelovende model: 
@@ -56,7 +69,7 @@ Een andere collega heeft alvast een hypertuning opgezet in `dev/scripts/02_tune.
 Implementeer de hypertuning voor jouw architectuur:
 - zorg dat je model geschikt is voor hypertuning
 - je mag je model nog wat aanpassen, als vraag 1d daar aanleiding toe geeft. Als je in 1d een ander model gebruikt dan hier, geef je model dan een andere naam zodat ik ze naast elkaar kan zien.
-- Stel dat je
+- Stel dat je data iets in de dataloader aanpast aanpassen, doe het dan ook en laat zien wat je gedaan hebt. 
 - voeg jouw model in op de juiste plek in de `tune.py` file.
 - maak een zoekruimte aan met behulp van pydantic (naar het voorbeeld van LinearSearchSpace), maar pas het aan voor jouw model.
 - Licht je keuzes toe: wat hypertune je, en wat niet? Waarom? En in welke ranges zoek je, en waarom? Zie ook de [docs van ray over search space](https://docs.ray.io/en/latest/tune/api_docs/search_space.html#tune-sample-docs) en voor [rondom search algoritmes](https://docs.ray.io/en/latest/tune/api_docs/suggestion.html#bohb-tune-search-bohb-tunebohb) voor meer opties en voorbeelden.

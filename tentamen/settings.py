@@ -48,10 +48,12 @@ class BaseSearchSpace(BaseModel):
 class LinearConfig(BaseSearchSpace):
     h1: int
     h2: int
+    h3: int
     dropout: float
 
 
 class LinearSearchSpace(BaseSearchSpace):
-    h1: Union[int, SAMPLE_INT] = tune.randint(16, 128)
-    h2: Union[int, SAMPLE_INT] = tune.randint(16, 128)
-    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.5)
+    h1: Union[int, SAMPLE_INT] = tune.randint(16, 128) #32 en 64 filters aan toegevoegd
+    h2: Union[int, SAMPLE_INT] = tune.randint(16, 128) #32 en 64 filters aan toegevoegd
+    h3: Union[int, SAMPLE_INT] = tune.randint(16, 128) #32 en 64 filters aan toegevoegd
+    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.3) # dropout van .5 naar .1 gemaakt.

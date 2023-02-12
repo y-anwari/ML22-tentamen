@@ -27,4 +27,5 @@ clean:
 	rm -rf logs/*
 	rm -rf models/*
 
-
+tensorboard:
+	poetry run tensorboard --logdir=logs/

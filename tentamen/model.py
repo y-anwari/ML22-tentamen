@@ -15,24 +15,43 @@ class GenericModel(Protocol):
         pass
 
 
+# class Linear(nn.Module):
+#     def __init__(self, config: Dict) -> None:
+#         super().__init__()
+
+#         self.encoder = nn.Sequential(
+#             nn.Linear(config["input"], config["h1"]),
+#             nn.ReLU(),
+#             nn.Linear(config["h1"], config["h2"]),
+#             nn.Dropout(config["dropout"]),
+#             nn.ReLU(),
+#             nn.Linear(config["h2"], config["output"]),
+#         )
+
+#     def forward(self, x: torch.Tensor) -> torch.Tensor:
+#         x = x.mean(dim=1)
+#         x = self.encoder(x)
+#         return x
+
 class Linear(nn.Module):
     def __init__(self, config: Dict) -> None:
         super().__init__()
 
         self.encoder = nn.Sequential(
             nn.Linear(config["input"], config["h1"]),
-            nn.ReLU(),
+            nn.LeakyReLU(),
             nn.Linear(config["h1"], config["h2"]),
+            nn.LeakyReLU(),
+            nn.Linear(config["h2"], config["h3"]),
             nn.Dropout(config["dropout"]),
-            nn.ReLU(),
-            nn.Linear(config["h2"], config["output"]),
+            nn.LeakyReLU(),
+            nn.Linear(config["h3"], config["output"]),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = x.mean(dim=1)
         x = self.encoder(x)
         return x
-
 
 class Accuracy:
     def __repr__(self) -> str:
