@@ -13,22 +13,22 @@ if __name__ == "__main__":
 
     trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    from tentamen.model import Linear
-    from tentamen.settings import LinearConfig
+    from tentamen.model import GRUModel
+    from tentamen.settings import GRUConfig
 
     configs = [
-        LinearConfig(
-            input=13, 
-            output=20, 
-            tunedir=presets.logdir, 
-            h1=100, 
-            h2=40, 
-            dropout=0.3
+        GRUConfig(
+            input = 13,
+            output = 20,
+            tunedir = presets.logdir,
+            hidden_size = 64,
+            num_layers = 3,
+            dropout = 0.4,
         ),
     ]
 
     for config in configs:
-        model = Linear(config.dict())  # type: ignore
+        model = GRUModel(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
             epochs=50,
@@ -48,5 +48,3 @@ if __name__ == "__main__":
         path = presets.modeldir / (timestamp + presets.modelname)
         logger.info(f"save model to {path}")
         torch.save(trainedmodel, path)
-
-

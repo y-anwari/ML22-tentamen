@@ -4,6 +4,9 @@
 run:	
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/01_model_design.py
 
+rungru:	
+	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/01_model_design_gru.py
+
 tune: 
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/02_tune.py
 
