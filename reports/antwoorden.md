@@ -42,7 +42,7 @@ Omdat jij de cursus Machine Learning hebt gevolgd kun jij hem uitstekend uitlegg
 - Geef aan wat jij verwacht dat de meest veelbelovende architectuur is, en waarom (opnieuw, laat zien dat je niet random getallen noemt, of keuzes maakt, maar dat jij je keuze baseert op ervaring die je hebt opgedaan met andere problemen).
 
 Antwoord:
-De architecturen die ik zou willen overwegen zijn LSTM en GRU. Hidden Size tussen 64 en 128, hoger zou ik niet kiezen. De dataset is zeer gering en relatief eenvoudig te classifiseren. LSTM heeft mijn voorkeur als de dataset groter zou zijn. Dat komt omdat deze getraind is op meer features dan GRU. Hierdoor zijn er meer paramaters beschikbaar, waardoor het model betere predicties kan uitvoeren. 
+De architecturen die ik zou willen overwegen zijn LSTM en GRU met een attention laag. Hidden Size tussen 64 en 128, hoger zou ik niet kiezen. De dataset is zeer gering en relatief eenvoudig te classifiseren. LSTM heeft mijn voorkeur als de dataset groter zou zijn. Dat komt omdat deze getraind is op meer features dan GRU. Hierdoor zijn er meer paramaters beschikbaar, waardoor het model betere predicties kan uitvoeren. 
 
 Bij dit architectuur is er rekening gehouden met de hoeveelheid data. Naarmate de dataset toeneemt, wordt er een uitgebreidere architectuur verwacht. Dat is natuurlijk ook afhankelijk hoeveel tijd je hebt om te experimenteren en hoe snel je computer jouw model traint. Omdat het hierbij om een tijdreekserie gaat, zou RNN zich bij uitstek goed lenen om gebruikt te worden. In dit geval vormt GRU de meest voor de handliggende keuze. Dit model werkt snel en levert in de beste resultaten op als het gaat om kleine datasets. LSTM was ook een optie geweest, mits de datasets groot waren. Dat is nu niet het geval. GRU is dus minder complex dan LSTM, omdat dit model minder poorten heeft, maar levert tegelijkertijd de beste resultaten op. De architectuur die ik hiervoor zou willen gaan gebruiken is, 64 hidden size, aantal layers zou ik op 3 houden en de dropout zou ik op 0.4 houden. Zoals hierboven benoemd, de dataset en het opgegeven probeel is niet erg complex en met de onderstaande instellingen, zou het model moeten werken. Een hogere hidden size en of layers maakt het model onnodig complex, wat meer tijd kost om te trainen en het mogelijkerwijs ook gaat overfitten. 
 
@@ -62,7 +62,7 @@ Antwoord:
 - GRUmodel, hidden Size 128, aantal layers 3 en dropout 0.4 scoort: 96% op accuracy 
 - GRUmodel, hidden Size 128, aantal layers 3 en dropout 0.1 scoort: 94% op accuracy
 
-Het GRU model met hidden size 128, aantal layers 3 en dropoutrate van 40% levert de beste score. De accuracy van het model bedraagt (afgerond) 96%, dit i.t.t. lineair model van maar liefst 73% accuracy. Dit model scoort dus beduidend beter. De overige parameters scoren min of meer hetzelfde. Dit is een goede basis om het model te kunnen hypertunen. Dit is ook goed terug te zien in figuur 1 en 2. De viertal modellen hebben geen overfitting. 
+Het GRU model met een attention laag en hidden size 128, aantal layers 3 en dropoutrate van 40% levert de beste score. De accuracy van het model bedraagt (afgerond) 96%, dit i.t.t. lineair model van maar liefst 73% accuracy. Dit model scoort dus beduidend beter. De overige parameters scoren min of meer hetzelfde. Dit is een goede basis om het model te kunnen hypertunen. Dit is ook goed terug te zien in figuur 1 en 2. De viertal modellen hebben geen overfitting. 
 
 <figure>
   <p align = "center">
