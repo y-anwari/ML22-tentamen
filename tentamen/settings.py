@@ -33,6 +33,13 @@ presets = Settings(
     logdir=root / "logs",
     modelname="model.pt",
     batchsize=128,
+    winningsettings = {
+        "input": 13,
+        "output": 20,
+        "hidden_size": 64,
+        "num_layers": 3,
+        "dropout": 0.4,
+    },
 )
 
 
@@ -62,6 +69,7 @@ class GRUConfig(BaseSearchSpace):
     dropout: float
 
 class GRUSearchSpace(BaseSearchSpace):
-    hidden_size: Union[int, SAMPLE_INT] = tune.randint(16, 128)
-    num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 5)
-    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.5) 
+    hidden_size: Union[int, SAMPLE_INT] = tune.randint(126)
+    num_layers: Union[int, SAMPLE_INT] = tune.randint(4)
+    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.11028) 
+    
